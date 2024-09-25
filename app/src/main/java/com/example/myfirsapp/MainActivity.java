@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 // necesitamos crear un objeto intent para pasar entre ventanas este objeto recibe
                 // como parametros la ventana actual y la ventana a la que queremos nevegar
                 if (etName.getText().toString().equalsIgnoreCase("") || etSurname.getText().toString().equalsIgnoreCase("")) {
-                    // EL toas es un mensaje chiquitito que se ve
+                    // EL toas es un mensaje chiquitito que se ve en la pantalla
                     Toast toas = new Toast(MainActivity.this);
                     toas.setText("El nombre y apellido no puede estar vacio");
                     toas.show();
