@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,21 +35,31 @@ public class MainActivity extends AppCompatActivity {
         Button btnSend = findViewById(R.id.btnOk);
         Button btnReset = findViewById(R.id.btnReset);
 
+
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // necesitamos crear un objeto intent para pasar entre ventanas este objeto recibe
                 // como parametros la ventana actual y la ventana a la que queremos nevegar
-                Intent intentDeMainActivity = new Intent(MainActivity.this, MainActivity2.class);
+                if (etName.getText().toString().equalsIgnoreCase("") || etSurname.getText().toString().equalsIgnoreCase("")) {
+                    // EL toas es un mensaje chiquitito que se ve
+                    Toast toas = new Toast(MainActivity.this);
+                    toas.setText("El nombre y apellido no puede estar vacio");
+                    toas.show();
+                    return;
+                }else {
+                    Intent intentDeMainActivity = new Intent(MainActivity.this, MainActivity2.class);
 
-                // Metodo para abrir otra activity
-                intentDeMainActivity.putExtra("nombre", etName.getText().toString());
-                intentDeMainActivity.putExtra("apellido", etSurname.getText().toString());
+                    // Metodo para abrir otra activity
+                    intentDeMainActivity.putExtra("nombre", etName.getText().toString());
+                    intentDeMainActivity.putExtra("apellido", etSurname.getText().toString());
 
-                Log.i("name", etName.getText().toString());
-                Log.i("surname", etSurname.getText().toString());
+                    Log.i("name", etName.getText().toString());
+                    Log.i("surname", etSurname.getText().toString());
 
-                startActivity(intentDeMainActivity);
+                    startActivity(intentDeMainActivity);
+                }
+
             }
         });
 
